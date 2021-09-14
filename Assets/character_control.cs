@@ -22,8 +22,7 @@ public class character_control : MonoBehaviour
 
     }
     void knockback(Vector3 dir, float force){
-     //   dor.Normalize();
-
+  
     }
     void OnCollisionEnter(Collision col){
         if(col.gameObject.tag == "player"){
