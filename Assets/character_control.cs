@@ -56,9 +56,7 @@ public class character_control : MonoBehaviour
         /*if (movingdirection != Vector3.zero) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movingdirection.normalized), 0.2f);
         }*/
-        /*if(Input.GetKey(KeyCode.A)){
-            transform.Rotate(Vector3.up * 30 * Time.deltaTime);
-        } */
+        
         
         if(Input.GetKey(KeyCode.F)){
             StartCoroutine(launch_projectile());
