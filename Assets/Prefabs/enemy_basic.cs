@@ -26,7 +26,7 @@ public class enemy_basic : MonoBehaviour
 
     }
     void OnCollisionEnter(Collision col){
-        if(col.gameObject.tag == "player"){
+        if(col.gameObject.tag == "Player"){
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
             Debug.Log("yes");
             Vector3 knock;
