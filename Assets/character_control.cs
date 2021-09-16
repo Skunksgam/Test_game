@@ -24,8 +24,6 @@ public class character_control : MonoBehaviour
             //contact_damage_reaction();
             StartCoroutine(contact_damage_reaction());
         }
-         
-
     }
     void knockback(Vector3 dir, float force){
   

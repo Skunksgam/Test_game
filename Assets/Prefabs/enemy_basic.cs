@@ -29,7 +29,7 @@ public class enemy_basic : MonoBehaviour
         if(col.gameObject.tag == "Player"){
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
             //enemy_body.isKinematic=true;
-            Debug.Log("yes");
+           // Debug.Log("yes");
             Vector3 knock;
             
         } 
@@ -37,24 +37,22 @@ public class enemy_basic : MonoBehaviour
     void OnCollisionStay(Collision col){
         if(col.gameObject.tag == "Player"){
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
-            Debug.Log("yes");
+            //Debug.Log("yes");
             //enemy_body.isKinematic=true;
             Vector3 knock;
             
         } 
     }
-    void OnCollisionLeave(Collision col){
-        //enemy_body.isKinematic=false;
-    }
+    
     // Update is called once per frame
-     void hit(double damage){
-         health-=damage;
-         
-     }
+    void hit(double damage){
+        health-=damage;
+    }
     void Update()
     {
         //p = tracking_player();
         transform.LookAt(p.transform.position);
+        transform.rotation*=Quaternion.Euler(0, 30, 0);
         float t_speed=speed*Time.deltaTime;
         enemy_body.AddForce((p.transform.position-transform.position)*speed);
         //transform.position=Vector3.MoveTowards(transform.position, p.position, t_speed);

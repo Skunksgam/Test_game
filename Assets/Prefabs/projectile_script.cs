@@ -5,7 +5,7 @@ using UnityEngine;
 public class projectile_script : MonoBehaviour
 {
     public double damage=50;
-    public float speed=400f;
+    public float speed=10f;
     Vector3 projectile_vector;
     // Start is called before the first frame update
     void Start()
