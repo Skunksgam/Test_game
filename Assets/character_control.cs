@@ -5,11 +5,12 @@ using UnityEngine;
 public class character_control : MonoBehaviour
 {
     public double health=200;
-    public float speed=0.1f;
+    public float speed=10f;
     public bool fire_flag=true;
     public GameObject projectile;
     public float fire_rate=1;
     public CharacterController bod;
+    public bool invulrenable=false;
     //public Transform projectile_pos;
     public float projectile_velocity=500f;
     // Start is called before the first frame update
@@ -18,7 +19,12 @@ public class character_control : MonoBehaviour
         bod=GetComponent<CharacterController>();
     }
     void enemy_contact_damage(double damage){
-         health-=damage;
+        if(!invulrenable){
+            health-=damage;
+            //contact_damage_reaction();
+            StartCoroutine(contact_damage_reaction());
+        }
+         
 
     }
     void knockback(Vector3 dir, float force){
@@ -40,6 +46,13 @@ public class character_control : MonoBehaviour
             Destroy(fire, 2.0f);
             yield return new WaitForSeconds((1/fire_rate));
             fire_flag=true;
+        }
+    }
+    IEnumerator contact_damage_reaction(){
+        if(!invulrenable){
+            invulrenable=true;
+            yield return new WaitForSeconds(1);
+            invulrenable=false;
         }
     }
     // Update is called once per frame
@@ -71,8 +84,9 @@ public class character_control : MonoBehaviour
          //   CancelInvoke("launch_projectile");
         //}
         if(movingdirection.magnitude==0){return;}
-        transform.position += movingdirection;
+        //transform.position += movingdirection;
         //transform.rotation = Quaternion.LookRotation(movingdirection);
+        bod.Move(movingdirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movingdirection), 0.15F);
     }
 }

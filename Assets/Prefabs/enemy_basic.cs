@@ -5,9 +5,9 @@ using UnityEngine;
 public class enemy_basic : MonoBehaviour
 {
     public double health=100;
-    public float speed=2;
+    public float speed=5f;
     public double contact_damage=20;
-    Transform p;
+    GameObject p;
     private GameObject player;
     private Transform player_t;
     Rigidbody enemy_body;
@@ -19,19 +19,32 @@ public class enemy_basic : MonoBehaviour
         p = tracking_player();
     }
     //bu simdilik hem bulma hem de takip etme, sonra bulma ayri bi fonksiyon olabilir
-    Transform tracking_player(){
+    GameObject tracking_player(){
         player= GameObject.Find("Player");
-        Transform t=player.transform;
-        return t;
+        //GameObject t=player;
+        return player;
 
     }
     void OnCollisionEnter(Collision col){
         if(col.gameObject.tag == "Player"){
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
+            //enemy_body.isKinematic=true;
             Debug.Log("yes");
             Vector3 knock;
             
         } 
+    }
+    void OnCollisionStay(Collision col){
+        if(col.gameObject.tag == "Player"){
+            col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
+            Debug.Log("yes");
+            //enemy_body.isKinematic=true;
+            Vector3 knock;
+            
+        } 
+    }
+    void OnCollisionLeave(Collision col){
+        //enemy_body.isKinematic=false;
     }
     // Update is called once per frame
      void hit(double damage){
@@ -41,9 +54,10 @@ public class enemy_basic : MonoBehaviour
     void Update()
     {
         //p = tracking_player();
-        transform.LookAt(p);
+        transform.LookAt(p.transform.position);
         float t_speed=speed*Time.deltaTime;
-        transform.position=Vector3.MoveTowards(transform.position, p.position, t_speed);
+        enemy_body.AddForce((p.transform.position-transform.position)*speed);
+        //transform.position=Vector3.MoveTowards(transform.position, p.position, t_speed);
         if(health<=0){Destroy(gameObject);}
     }
 }

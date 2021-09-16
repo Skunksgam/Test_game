@@ -23,6 +23,7 @@ public class projectile_script : MonoBehaviour
             Destroy(gameObject);
          } 
     }
+    
     // Update is called once per frame
     void Update()
     {
