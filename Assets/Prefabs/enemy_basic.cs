@@ -29,7 +29,7 @@ public class enemy_basic : MonoBehaviour
         if(col.gameObject.tag == "Player"){
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
             //enemy_body.isKinematic=true;
-            Debug.Log("yes");
+            //Debug.Log("yes");
             Vector3 knock;
             
         } 
@@ -37,7 +37,7 @@ public class enemy_basic : MonoBehaviour
     void OnCollisionStay(Collision col){
         if(col.gameObject.tag == "Player"){
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
-            Debug.Log("yes");
+            //Debug.Log("yes");
             //enemy_body.isKinematic=true;
             Vector3 knock;
             

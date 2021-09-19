@@ -7,7 +7,7 @@ public class character_control : MonoBehaviour
     public double health=200;
     public float speed=10f;
     public bool fire_flag=true;
-    public GameObject projectile;
+    public GameObject Projectile;
     public float fire_rate=1;
     public CharacterController bod;
     public bool invulrenable=false;
@@ -40,7 +40,7 @@ public class character_control : MonoBehaviour
         if (fire_flag){
             fire_flag=false;
             Vector3 movingdirection2=transform.position;
-            GameObject fire=Instantiate(projectile, transform.position, transform.rotation);
+            GameObject fire=Instantiate(Projectile, transform.position, transform.rotation);
             //fire.GetComponent<projectile_script>().setting_up(movingdirection);
             Destroy(fire, 2.0f);
             yield return new WaitForSeconds((1/fire_rate));
