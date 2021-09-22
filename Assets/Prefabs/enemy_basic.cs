@@ -16,6 +16,7 @@ public class enemy_basic : MonoBehaviour
     void Start()
     {
         enemy_body=GetComponent<Rigidbody>();
+        enemy_body.constraints = RigidbodyConstraints.FreezePositionY;
         p = tracking_player();
     }
     //bu simdilik hem bulma hem de takip etme, sonra bulma ayri bi fonksiyon olabilir
@@ -54,9 +55,9 @@ public class enemy_basic : MonoBehaviour
     void Update()
     {
         //p = tracking_player();
-        transform.LookAt(p.transform.position);
+        transform.LookAt(p.transform.position-transform.position);
         float t_speed=speed*Time.deltaTime;
-        enemy_body.AddForce((p.transform.position-transform.position)*speed);
+        enemy_body.AddForce((p.transform.position-transform.position).normalized*speed);
         //transform.position=Vector3.MoveTowards(transform.position, p.position, t_speed);
         if(health<=0){Destroy(gameObject);}
     }
