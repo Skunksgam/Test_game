@@ -5,8 +5,9 @@ using UnityEngine;
 public class enemy_basic : MonoBehaviour
 {
     public double health=100;
-    public float speed=5f;
+    public float speed=20f;
     public double contact_damage=20;
+    public float gravity=-10f;
     GameObject p;
     private GameObject player;
     private Transform player_t;
@@ -55,9 +56,12 @@ public class enemy_basic : MonoBehaviour
     void Update()
     {
         //p = tracking_player();
-        transform.LookAt(p.transform.position-transform.position);
+        transform.LookAt(p.transform.position);
+        transform.rotation*=Quaternion.Euler(0, 30, 0);
         float t_speed=speed*Time.deltaTime;
-        enemy_body.AddForce((p.transform.position-transform.position).normalized*speed);
+        Vector3 move_force=(p.transform.position-transform.position).normalized;
+        move_force.y=0;
+        enemy_body.AddForce(move_force*speed);
         //transform.position=Vector3.MoveTowards(transform.position, p.position, t_speed);
         if(health<=0){Destroy(gameObject);}
     }

@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  speed: 5
+  speed: 10
   contact_damage: 20
 --- !u!54 &834612012
 Rigidbody:
