@@ -59,7 +59,10 @@ public class enemy_basic : MonoBehaviour
         transform.LookAt(p.transform.position);
         transform.rotation*=Quaternion.Euler(0, 30, 0);
         float t_speed=speed*Time.deltaTime;
-        Vector3 move_force=(p.transform.position-transform.position).normalized;
+        Vector3 filtered=p.transform.position;
+        filtered.x-=transform.position.x;filtered.z-=transform.position.z;
+        Vector3 move_force=(filtered).normalized;
+        //move_force.y=0; daha iyi bi opsiyon olmali
         move_force.y=0;
         enemy_body.AddForce(move_force*speed);
         //transform.position=Vector3.MoveTowards(transform.position, p.position, t_speed);
