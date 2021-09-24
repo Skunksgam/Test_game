@@ -93,12 +93,14 @@ public class character_control : MonoBehaviour
         if(!bod.isGrounded && grav_variable>-1){
             grav_variable+=gravity_pull*Time.deltaTime;
         }
-        if(movingdirection.magnitude==0){return;}
+        
         movingdirection.y=grav_variable;
+        
         //transform.position += movingdirection;
         //transform.rotation = Quaternion.LookRotation(movingdirection);
         Vector3 look_rotation=movingdirection;look_rotation.y=0;
         bod.Move(movingdirection);
+        if(movingdirection.x==0&&movingdirection.z==0){return;}
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look_rotation), 0.15F);
     }
     void FixedUpdate() {
