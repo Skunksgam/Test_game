@@ -481,13 +481,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 200
+  grav_variable: 0
+  jump_stat: 0.1
   speed: 10
   fire_flag: 1
   Projectile: {fileID: 0}
   fire_rate: 1
   bod: {fileID: 0}
   invulrenable: 0
-  gravity_pull: -2
+  gravity_pull: -0.3
   projectile_velocity: 500
 --- !u!95 &647441088
 Animator:
@@ -918,4 +920,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  cam_pos: {x: 0, y: 7, z: -4.5}
+  cam_pos: {x: 0, y: 9, z: -4.5}
