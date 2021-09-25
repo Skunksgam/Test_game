@@ -32,12 +32,14 @@ public class character_control : MonoBehaviour
          
 
     }
-    void knockback(Vector3 dir){
-        bod.Move(dir);
+    float knockback(float knock_force){
+        return 1f;
     }
     void OnCollisionEnter(Collision col){
-        if(col.gameObject.tag == "player"){
-            
+        if(col.gameObject.tag == "enemy"){
+            float forc=col.gameObject.GetComponent<enemy_basic>().knock_force;
+            Debug.Log(forc);
+            bod.Move((bod.transform.position-col.gameObject.transform.position).normalized*forc);
         } 
     }
     //WaitForSeconds fonksiyonu yield return ve icinde bulundugu fonksiyonun IEnumerator olmasini gerektiriyo

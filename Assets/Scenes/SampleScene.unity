@@ -732,6 +732,7 @@ MonoBehaviour:
   speed: 20
   contact_damage: 20
   gravity: -10
+  knock_force: 1
 --- !u!54 &834612012
 Rigidbody:
   m_ObjectHideFlags: 0
