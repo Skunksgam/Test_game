@@ -21,6 +21,7 @@ public class character_control : MonoBehaviour
     void Start()
     {
         bod=GetComponent<CharacterController>();
+       // Projectile=(GameObject)Resources.Load("Prefabs/Projectile.prefab", typeof(GameObject));
     }
     void enemy_contact_damage(double damage){
         if(!invulrenable){
@@ -31,8 +32,8 @@ public class character_control : MonoBehaviour
          
 
     }
-    void knockback(Vector3 dir, float force){
-  
+    void knockback(Vector3 dir){
+        bod.Move(dir);
     }
     void OnCollisionEnter(Collision col){
         if(col.gameObject.tag == "player"){

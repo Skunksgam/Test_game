@@ -8,6 +8,7 @@ public class enemy_basic : MonoBehaviour
     public float speed=20f;
     public double contact_damage=20;
     public float gravity=-10f;
+    public float knock_force=10f;
     GameObject p;
     private GameObject player;
     private Transform player_t;
@@ -29,7 +30,10 @@ public class enemy_basic : MonoBehaviour
     }
     void OnCollisionEnter(Collision col){
         if(col.gameObject.tag == "Player"){
+            Vector3 push_direction=transform.position.normalized;
+            push_direction.y=0;
             col.gameObject.SendMessage("enemy_contact_damage", contact_damage);
+            col.gameObject.SendMessage("knockback", push_direction*knock_force);
             //enemy_body.isKinematic=true;
             //Debug.Log("yes");
             
@@ -56,7 +60,9 @@ public class enemy_basic : MonoBehaviour
     void Update()
     {
         //p = tracking_player();
-        transform.LookAt(p.transform.position);
+        Vector3 newp=p.transform.position;
+        newp.y=0;
+        transform.LookAt(newp);
         transform.rotation*=Quaternion.Euler(0, 30, 0);
         float t_speed=speed*Time.deltaTime;
         Vector3 filtered=p.transform.position;
