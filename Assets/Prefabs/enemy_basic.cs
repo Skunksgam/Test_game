@@ -8,7 +8,7 @@ public class enemy_basic : MonoBehaviour
     public float speed=20f;
     public float contact_damage=20;
     public float gravity=-10f;
-    public float knock_force=5f;
+    public float knock_force=100f;
     GameObject p;
     private GameObject player;
     private Transform player_t;
