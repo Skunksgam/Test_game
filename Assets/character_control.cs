@@ -37,11 +37,11 @@ public class character_control : MonoBehaviour
     }
     void OnCollisionEnter(Collision col){
         if(col.gameObject.tag == "enemy"){
-            float forc=col.gameObject.GetComponent<enemy_basic>().knock_force;
-            Debug.Log(forc);
-            Vector3 Addvec=(bod.transform.position-col.gameObject.transform.position).normalized*forc;
+            float forc2=col.gameObject.GetComponent<enemy_basic>().knock_force;
+            Debug.Log(forc2);
+            Vector3 Addvec=(bod.transform.position-col.gameObject.transform.position).normalized*forc2;
             //Vector3 trs= Vector3.Lerp(bod.transform.position, (bod.transform.position-col.gameObject.transform.position).normalized*forc, Time.deltaTime*10);
-            transform.position=Vector3.Lerp(bod.transform.position, (bod.transform.position-col.gameObject.transform.position).normalized*forc, Time.deltaTime*10);
+            transform.position=Vector3.Lerp(bod.transform.position, (bod.transform.position-col.gameObject.transform.position).normalized*forc2, Time.deltaTime*10);
             //bod.Move((bod.transform.position-col.gameObject.transform.position)*Time.deltaTime*forc);
         } 
     }
